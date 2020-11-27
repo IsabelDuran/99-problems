@@ -56,9 +56,23 @@ object Answers extends Exercises {
     aux(list, None)
   }
 
-  override def range(from: Int, to: Int): List[Int] = ???
+  override def range(from: Int, to: Int): List[Int] = {
+    @tailrec
+    def aux(a: Int, b: Int, list: List[Int]) : List[Int] = (a,b) match {
+      case _ if b < a => list
+      case _ if a == b => list :+ a
+      case (a, b) => aux(a + 1, b, list :+ a)
+    }
 
-  override def removeAt[A](index: Int, list: List[A]): List[A] = ???
+    aux(from, to, Nil)
+  }
+
+  override def removeAt[A](index: Int, list: List[A]): List[A] = list match {
+    case Nil => throw new NoSuchElementException("The list is empty")
+    case _ if index > list.length => throw new NoSuchElementException("The index is out of range")
+    case x :: tail if index == 0 => tail
+    case x :: tail => x :: removeAt(index - 1, tail)
+  }
 
   override def reverse[A](list: List[A]): List[A] = ???
 }

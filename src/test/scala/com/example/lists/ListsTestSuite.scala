@@ -68,4 +68,14 @@ class ListsTestSuite extends AnyFlatSpec with Matchers with OptionValues {
   it should "return None when the list is empty" in {
     Answers.penultimate(List.empty) shouldEqual None
   }
+
+  "range" should "return a list of all integers within a given range" in {
+    val list = List(1, 2, 3, 4)
+
+    Answers.range(1, 4) shouldEqual list
+  }
+  it should "return a Nil when the starting number is greater than the finishing number" in {
+    Answers.range(10, 4) shouldEqual Nil
+  }
+
 }
