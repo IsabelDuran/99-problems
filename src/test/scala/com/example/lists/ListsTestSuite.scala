@@ -11,7 +11,7 @@ class ListsTestSuite extends AnyFlatSpec with Matchers with OptionValues {
     Answers.last(list).value shouldEqual 5
   }
 
-  it should "return None" in {
+  it should "return None when the list is empty" in {
     Answers.last(List.empty) shouldEqual None
   }
 
@@ -23,5 +23,20 @@ class ListsTestSuite extends AnyFlatSpec with Matchers with OptionValues {
 
   it should "return zero" in {
     Answers.length(List.empty) shouldEqual 0
+  }
+
+  "penultimate" should "return the last but one element of the list" in {
+    val list = List(1, 2)
+
+    Answers.penultimate(list).value shouldEqual 1
+  }
+
+  it should "return None when the list only contains one element" in {
+    val list = List(1)
+
+    Answers.penultimate(list) shouldEqual None
+  }
+  it should "return None when the list is empty" in {
+    Answers.penultimate(List.empty) shouldEqual None
   }
 }
