@@ -1,11 +1,21 @@
 package com.example.lists
 
+import scala.annotation.tailrec
+
 object Answers extends Exercises {
   override def isPalindrome[A](list: List[A]): Boolean = ???
 
   override def last[A](list: List[A]): Option[A] = ???
 
-  override def length[A](list: List[A]): Int = ???
+  override def length[A](list: List[A]): Int = {
+    @tailrec
+    def aux(l: List[A], length: Int) : Int = l match {
+      case Nil => length
+      case _ :: tail => aux(tail, length + 1)
+    }
+
+    aux(list, 0)
+  }
 
   override def nth[A](n: Int, list: List[A]): Option[A] = ???
 
