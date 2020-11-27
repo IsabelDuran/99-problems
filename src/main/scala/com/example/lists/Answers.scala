@@ -11,7 +11,7 @@ object Answers extends Exercises {
       case (_ :: tailA, _ :: tailB) => aux(pos + 1, tailA, tailB, listA(pos) == listB(pos))
     }
 
-    aux(0, list, list.reverse, a = true)
+    aux(0, list, Answers.reverse(list), a = true)
   }
 
   override def last[A](list: List[A]): Option[A] = {
@@ -74,5 +74,13 @@ object Answers extends Exercises {
     case x :: tail => x :: removeAt(index - 1, tail)
   }
 
-  override def reverse[A](list: List[A]): List[A] = ???
+  override def reverse[A](list: List[A]): List[A] = {
+    @tailrec
+    def aux(listA: List[A], listB: List[A]) : List[A] = listA match {
+      case Nil => listB
+      case x :: tail => aux(tail, x +: listB)
+    }
+
+    aux(list, Nil)
+  }
 }

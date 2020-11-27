@@ -78,4 +78,19 @@ class ListsTestSuite extends AnyFlatSpec with Matchers with OptionValues {
     Answers.range(10, 4) shouldEqual Nil
   }
 
+  "removeAt" should "remove from the list the element at the given position" in {
+    val list = List(1, 2, 3, 4)
+
+    Answers.removeAt(2, list) shouldEqual List(1, 2, 4)
+  }
+
+  "reverse" should "reverse a list" in {
+    val list = List(1, 2, 3, 4)
+
+    Answers.reverse(list) shouldEqual List(4, 3, 2, 1)
+  }
+
+  "reverse" should "return Nil if the list is empty" in {
+    Answers.reverse(List.empty) shouldEqual Nil
+  }
 }
