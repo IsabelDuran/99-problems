@@ -25,7 +25,16 @@ object Answers extends Exercises {
     aux(list, 0)
   }
 
-  override def nth[A](n: Int, list: List[A]): Option[A] = ???
+  override def nth[A](n: Int, list: List[A]): Option[A] = {
+    @tailrec
+    def aux(pos: Int, l: List[A], element: Option[A]) : Option[A] = l match {
+      case Nil => element
+      case _ if n == pos => Option(l.head)
+      case x :: tail => aux(pos + 1, tail, None)
+    }
+
+    aux(0, list, None)
+  }
 
   override def penultimate[A](list: List[A]): Option[A] = {
     @tailrec

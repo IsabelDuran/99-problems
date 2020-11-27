@@ -25,6 +25,21 @@ class ListsTestSuite extends AnyFlatSpec with Matchers with OptionValues {
     Answers.length(List.empty) shouldEqual 0
   }
 
+  "nth" should "return the nth element of the list" in {
+    val list = List(1, 2, 3, 4, 5, 6, 7)
+
+    Answers.nth(5, list).value shouldEqual 6
+  }
+
+  it should "return None when the nth position does not exist" in {
+    val list = List(1, 2, 3, 4)
+
+    Answers.nth(5, list) shouldEqual None
+  }
+  it should "return None when the list is empty" in {
+    Answers.nth(5, List.empty) shouldEqual None
+  }
+
   "penultimate" should "return the last but one element of the list" in {
     val list = List(1, 2)
 
