@@ -6,6 +6,20 @@ import org.scalatest.matchers.should.Matchers
 
 class ListsTestSuite extends AnyFlatSpec with Matchers with OptionValues {
 
+  "palindrome" should "return that the list is a palindrome" in {
+    val list = List("A", "B", "C", "D", "C", "B", "A")
+
+    Answers.isPalindrome(list) shouldEqual true
+  }
+  it should "return that the list is not a palindrome" in {
+    val list = List("A", "B", "C", "D", "A", "B", "C")
+
+    Answers.isPalindrome(list) shouldEqual false
+  }
+  it should "return that the list is a palindrome if it is empty" in {
+    Answers.isPalindrome(List.empty) shouldEqual true
+  }
+
   "last" should "return the last element of the list" in {
     val list = List(1, 2, 3, 4, 5)
     Answers.last(list).value shouldEqual 5

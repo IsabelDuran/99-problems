@@ -3,7 +3,16 @@ package com.example.lists
 import scala.annotation.tailrec
 
 object Answers extends Exercises {
-  override def isPalindrome[A](list: List[A]): Boolean = ???
+  override def isPalindrome[A](list: List[A]): Boolean = {
+    @tailrec
+    def aux(pos: Int, listA: List[A], listB: List[A], a: Boolean) : Boolean = (listA, listB) match {
+      case (Nil, Nil) => a
+      case _ if pos >= listA.length => a
+      case (_ :: tailA, _ :: tailB) => aux(pos + 1, tailA, tailB, listA(pos) == listB(pos))
+    }
+
+    aux(0, list, list.reverse, a = true)
+  }
 
   override def last[A](list: List[A]): Option[A] = {
     @tailrec
@@ -29,7 +38,7 @@ object Answers extends Exercises {
     @tailrec
     def aux(pos: Int, l: List[A], element: Option[A]) : Option[A] = l match {
       case Nil => element
-      case _ if n == pos => Option(l.head)
+      case _ if n == pos => l.headOption
       case x :: tail => aux(pos + 1, tail, None)
     }
 
