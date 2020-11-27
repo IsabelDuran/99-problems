@@ -5,7 +5,15 @@ import scala.annotation.tailrec
 object Answers extends Exercises {
   override def isPalindrome[A](list: List[A]): Boolean = ???
 
-  override def last[A](list: List[A]): Option[A] = ???
+  override def last[A](list: List[A]): Option[A] = {
+    @tailrec
+    def aux(l: List[A], element: Option[A]) : Option[A] = l match {
+      case Nil => element
+      case x :: tail => aux(tail, Option(x))
+    }
+
+    aux(list, None)
+  }
 
   override def length[A](list: List[A]): Int = {
     @tailrec
